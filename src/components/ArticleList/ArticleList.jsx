@@ -2,11 +2,9 @@
 
 const ArticleList = ({ items }) => (
   <ul>
-    {items.map(({ objectID, url, title }) => (
-      <li key={objectID}>
-        <a href={url} target="_blank" rel="noreferrer noopener">
-          {title}
-        </a>
+    {items.map(({ image }) => (
+      <li key={image.id}>
+        <img src={image.urls.small} alt={image.description} className={s.img} />
       </li>
     ))}
   </ul>
