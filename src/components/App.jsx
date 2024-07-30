@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './App.css';
 import ArticleList from './ArticleList/ArticleList.jsx';
-import {fetchArticlesWithTopic} from '../article-api.js';
-import SearchForm from './SearchForm/SearchForm.jsx';
+import {fetchPhotos} from '../api.js';
+import SearchBar from './SearchBar/SearchBar.jsx';
+import ImageGallery from './ImageGallery/ImageGallery.jsx';
 import Loader from './Loader/Loader.jsx'
 import Error from './Error/Error.jsx'
 
@@ -12,12 +13,12 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-const handleSearch = async (topic) => {
+const handleSearch = async (query) => {
     try {
 	    setArticles([]);
 	    setError(false);
       setLoading(true);
-      const data = await fetchArticlesWithTopic(topic);
+      const data = await fetchPhotos(query);
       setArticles(data);
     } catch (error) {
       setError(true);
@@ -28,10 +29,13 @@ const handleSearch = async (topic) => {
 
   return (
     <div>
-      <SearchForm onSearch={handleSearch} />
-      {loading && <Loader/>}
-      {error && <Error/>}
+      <SearchBar onSearch={handleSearch} />
+      <main>
+        <ImageGallery/>
+        {loading && <Loader/>}
+        {error && <Error/>}
       {articles.length > 0 && <ArticleList items={articles} />}
+      </main>
     </div>
   );
 };
