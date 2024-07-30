@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import ArticleList from './ArticleList/ArticleList.jsx';
 import {fetchPhotos} from '../api.js';
@@ -9,32 +9,50 @@ import Error from './Error/Error.jsx'
 
 const App = () => {
 
-  const [articles, setArticles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [photos, setPhotos] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-const handleSearch = async (query) => {
-    try {
-	    setArticles([]);
-	    setError(false);
-      setLoading(true);
-      const data = await fetchPhotos(query);
-      setArticles(data);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+  const getImage = (query) => {
+    setSearchQuery(query);
   };
+
+  useEffect(() => {
+    if (!searchQuery) return;
+
+    async function fetchImg() {
+      try {
+        setLoading(true);
+        setError(false);
+
+        const data = await fetchPhotos(searchQuery, currentPage);
+
+        setPhotos((prevPhotos) => {
+          return [...prevPhotos, ...data.results];
+        });
+
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchImg()
+  }, [searchQuery, currentPage]);
+ 
 
   return (
     <div>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={getImage} />
       <main>
         <ImageGallery/>
         {loading && <Loader/>}
         {error && <Error/>}
-      {articles.length > 0 && <ArticleList items={articles} />}
+      {photos.length > 0 && <ArticleList items={articles} />}
       </main>
     </div>
   );

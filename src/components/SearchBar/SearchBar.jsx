@@ -1,16 +1,16 @@
 // import React from 'react'
-import toast from 'react-hot-toast';
+import {toast} from "react-hot-toast";
 
-const notify = () => toast.error('Here is your toast.');
+// const notify = () => toast.error('Please enter search term!')
 
 
-const SearchForm = ({ onSearch }) => {
+const SearchBar = ({onSearch}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-      const inputValue = form.elements.topic.value.trim();
+      const inputValue = form.elements.search.value.trim();
       if(inputValue === "") {
-			notify()
+        alert("Please enter search term!")
 			return;
 		}
     onSearch(inputValue);
@@ -32,4 +32,4 @@ const SearchForm = ({ onSearch }) => {
   );
 }
 
-export default SearchForm
+export default SearchBar
