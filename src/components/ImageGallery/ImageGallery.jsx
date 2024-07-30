@@ -3,10 +3,10 @@ import s from './ImageGallery.module.css'
 
 const ImageGallery = ({images}) => {
   return (
-    <ul>
+    <ul className={s.imageList}>
       {images.map((image) => {
         return (
-          <li key={image.id}>
+          <li key={image.id} className={s.imageItem}>
             <ImageCard image={image} />
           </li>
         )

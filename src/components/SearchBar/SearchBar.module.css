@@ -7,6 +7,8 @@
   top: 0;
   left: 0;
   right: 0;
+  background-color: #1b1e38;
+  z-index: 100;
   border-bottom: 1px solid cornsilk;
   transform: translateY(0px);
 }

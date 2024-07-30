@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import ArticleList from './ArticleList/ArticleList.jsx';
 import {fetchPhotos} from '../api.js';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import ImageGallery from './ImageGallery/ImageGallery.jsx';
@@ -19,6 +18,8 @@ const App = () => {
 
   const getImage = (query) => {
     setSearchQuery(query);
+    setCurrentPage(1);
+    setPhotos([]);
   };
 
   useEffect(() => {
