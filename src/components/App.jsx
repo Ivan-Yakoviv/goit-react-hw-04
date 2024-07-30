@@ -49,10 +49,10 @@ const App = () => {
     <div>
       <SearchBar onSearch={getImage} />
       <main>
-        <ImageGallery/>
+        {photos.length > 0 && <ImageGallery images={photos}/>}
         {loading && <Loader/>}
         {error && <Error/>}
-      {photos.length > 0 && <ArticleList items={articles} />}
+      {/* {photos.length > 0 && <ArticleList items={articles} />} */}
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-// import React from 'react'
+import s from './SearchBar.module.css'
 import {toast} from "react-hot-toast";
 
 // const notify = () => toast.error('Please enter search term!')
@@ -18,9 +18,9 @@ const SearchBar = ({onSearch}) => {
   };
 
   return (
-    <header>
-      <form onSubmit={handleSubmit}>
-        <input
+    <header className={s.header}>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <input className={s.input}
           type="text"
           name="search"
           autoComplete="off"

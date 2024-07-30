@@ -1,0 +1,17 @@
+.header {
+  min-width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid cornsilk;
+  transform: translateY(0px);
+}
+
+.form {
+  background-color: #fff;
+  padding: 0 20px;
+}

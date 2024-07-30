@@ -1,8 +1,10 @@
 import s from './ImageCard.module.css'
 
-const ImageCard = () => {
+const ImageCard = ({image}) => {
   return (
-    <div></div>
+    <div>
+      <img src={image.urls.small} alt={image.description} />
+    </div>
   )
 }
 
