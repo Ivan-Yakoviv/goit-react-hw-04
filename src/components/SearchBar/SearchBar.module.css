@@ -14,6 +14,21 @@
 }
 
 .form {
-  background-color: #fff;
+  display: flex;
+  background-color: #454e8b;
   padding: 0 20px;
+}
+
+.input {
+  background-color: #454e8b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 0 20px;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
 }

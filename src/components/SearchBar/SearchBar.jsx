@@ -1,5 +1,6 @@
 import s from './SearchBar.module.css'
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { PiListMagnifyingGlassLight } from "react-icons/pi";
 
 // const notify = () => toast.error('Please enter search term!')
 
@@ -26,7 +27,7 @@ const SearchBar = ({onSearch}) => {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos" />
-        <button type='submit'>Search</button>
+        <button type='submit' className={s.btn}><PiListMagnifyingGlassLight size={26}/></button>
       </form>
     </header>
   );
