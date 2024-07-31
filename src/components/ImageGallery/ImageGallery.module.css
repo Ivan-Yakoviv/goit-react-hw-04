@@ -5,10 +5,11 @@
   display: flex;
   flex-wrap: wrap;
   column-gap: 10px;
-  /* column-count: 4; */
+  justify-content: center;
   row-gap: 5px;
 }
 
 .imageItem:hover {
   cursor: pointer;
+  min-width: 320px;
 }

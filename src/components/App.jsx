@@ -5,6 +5,7 @@ import SearchBar from './SearchBar/SearchBar.jsx';
 import ImageGallery from './ImageGallery/ImageGallery.jsx';
 import Loader from './Loader/Loader.jsx'
 import Error from './Error/Error.jsx'
+import LoadMore from './LoadMore/LoadMore.jsx';
 
 const App = () => {
 
@@ -20,6 +21,10 @@ const App = () => {
     setSearchQuery(query);
     setCurrentPage(1);
     setPhotos([]);
+  };
+
+  const loadMore = () => {
+    setCurrentPage(currentPage + 1);
   };
 
   useEffect(() => {
@@ -52,8 +57,8 @@ const App = () => {
       <main>
         {photos.length > 0 && <ImageGallery images={photos}/>}
         {loading && <Loader/>}
-        {error && <Error/>}
-      {/* {photos.length > 0 && <ArticleList items={articles} />} */}
+        {error && <Error />}
+        {photos.length > 0 && (<LoadMore onMore={loadMore} />)}
       </main>
     </div>
   );
