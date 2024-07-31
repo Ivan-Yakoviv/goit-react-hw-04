@@ -6,6 +6,7 @@ import ImageGallery from './ImageGallery/ImageGallery.jsx';
 import Loader from './Loader/Loader.jsx'
 import Error from './Error/Error.jsx'
 import LoadMore from './LoadMore/LoadMore.jsx';
+import ImageModal from './ImageModal/ImageModal.jsx';
 
 const App = () => {
 
@@ -17,6 +18,9 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
+
   const getImage = (query) => {
     setSearchQuery(query);
     setCurrentPage(1);
@@ -25,6 +29,11 @@ const App = () => {
 
   const loadMore = () => {
     setCurrentPage(currentPage + 1);
+  };
+
+   const openModal = (image) => {
+    setModalData(image);
+    setIsModalOpen(true);
   };
 
   useEffect(() => {
@@ -55,11 +64,18 @@ const App = () => {
     <div>
       <SearchBar onSearch={getImage} />
       <main>
-        {photos.length > 0 && <ImageGallery images={photos}/>}
+        {photos.length > 0 && <ImageGallery images={photos} openModal={openModal} />}
         {loading && <Loader/>}
         {error && <Error />}
         {photos.length > 0 && (<LoadMore onMore={loadMore} />)}
       </main>
+      {isModalOpen && (
+        <ImageModal
+          isOpen={isModalOpen}
+          onSetModal={setIsModalOpen}
+          imageData={modalData}
+        />
+      )}
     </div>
   );
 };

@@ -1,8 +1,7 @@
-import s from './SearchBar.module.css'
+import s from './SearchBar.module.css';
 import { toast } from "react-hot-toast";
 import { PiListMagnifyingGlassLight } from "react-icons/pi";
 
-// const notify = () => toast.error('Please enter search term!')
 
 
 const SearchBar = ({onSearch}) => {
@@ -10,8 +9,9 @@ const SearchBar = ({onSearch}) => {
     e.preventDefault();
     const form = e.target;
       const inputValue = form.elements.search.value.trim();
-      if(inputValue === "") {
-        alert("Please enter search term!")
+    if (inputValue === "") {
+        toast.error("Please enter a search term");
+      alert("Please enter search term!");
 			return;
 		}
     onSearch(inputValue);
