@@ -2,16 +2,11 @@ import s from './ImageModal.module.css';
 import Modal from 'react-modal';
 
 
-
-// Modal.setAppElement("#root");
-
 const ImageModal = ({ isOpen, onSetModal, imageData }) => {
 
     const {
-        created_at,
         description,
         urls,
-        links: { download },
         likes,
         tags,
         user: { name, location },
@@ -50,16 +45,12 @@ const ImageModal = ({ isOpen, onSetModal, imageData }) => {
       preventScroll={true}
       onAfterClose={handleBodyClassRemove}>
       <div className={s.content}>
-        <div className={s.btnGroup}>
-
-
+        <div>
           <button className={s.btn} onClick={onCloseModal} type="button">
             X
           </button>
         </div>
-
         <img className={s.img} src={urls.regular} alt={alt_description} />
-
         <div className={s.infoListAndLink}>
           <ul className={s.infoWrapper}>
             <li className="imageInfo">
@@ -78,15 +69,6 @@ const ImageModal = ({ isOpen, onSetModal, imageData }) => {
               </ul>
             </li>
           </ul>
-          {/* <a
-            href={download}
-            rel="noreferrer noopener"
-            target="_blank"
-            download
-            className={s.download}
-            type="button">
-            Download
-          </a> */}
         </div>
         <p className={s.description}>{description}</p>
         <div className={s.userInfo}>

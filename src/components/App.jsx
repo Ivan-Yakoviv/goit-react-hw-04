@@ -7,6 +7,7 @@ import Loader from './Loader/Loader.jsx'
 import Error from './Error/Error.jsx'
 import LoadMore from './LoadMore/LoadMore.jsx';
 import ImageModal from './ImageModal/ImageModal.jsx';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
 
@@ -76,6 +77,7 @@ const App = () => {
           imageData={modalData}
         />
       )}
+      <Toaster/>
     </div>
   );
 };
