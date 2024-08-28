@@ -1,19 +1,17 @@
-import s from './ImageModal.module.css';
-import Modal from 'react-modal';
-
+import s from "./ImageModal.module.css";
+import Modal from "react-modal";
 
 const ImageModal = ({ isOpen, onSetModal, imageData }) => {
+  const {
+    description,
+    urls,
+    // likes,
+    // tags,
+    // user: { name, location },
+    alt_description,
+  } = imageData;
 
-    const {
-        description,
-        urls,
-        likes,
-        tags,
-        user: { name, location },
-        alt_description,
-    } = imageData;
-
-    const customStyles = {
+  const customStyles = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.65)",
     },
@@ -26,24 +24,25 @@ const ImageModal = ({ isOpen, onSetModal, imageData }) => {
       backgroundColor: "#F0F0F0",
     },
   };
-    
-    const onCloseModal = () => {
-        onSetModal(false);
-    };
 
-     const handleBodyClassRemove = () => {
+  const onCloseModal = () => {
+    onSetModal(false);
+  };
+
+  const handleBodyClassRemove = () => {
     document.body.classList.remove("ReactModal__Body--open");
   };
 
-    return (
-            <Modal
+  return (
+    <Modal
       isOpen={isOpen}
       style={customStyles}
       onRequestClose={onCloseModal}
       className={s.modal}
       contentLabel="Image Modal window"
       preventScroll={true}
-      onAfterClose={handleBodyClassRemove}>
+      onAfterClose={handleBodyClassRemove}
+    >
       <div className={s.content}>
         <div>
           <button className={s.btn} onClick={onCloseModal} type="button">
@@ -51,7 +50,7 @@ const ImageModal = ({ isOpen, onSetModal, imageData }) => {
           </button>
         </div>
         <img className={s.img} src={urls.regular} alt={alt_description} />
-        <div className={s.infoListAndLink}>
+        {/* <div className={s.infoListAndLink}>
           <ul className={s.infoWrapper}>
             <li className="imageInfo">
               <p className={s.imageInfoHeading}>Likes</p>
@@ -69,17 +68,17 @@ const ImageModal = ({ isOpen, onSetModal, imageData }) => {
               </ul>
             </li>
           </ul>
-        </div>
+        </div> */}
         <p className={s.description}>{description}</p>
-        <div className={s.userInfo}>
+        {/* <div className={s.userInfo}>
           <div>
             <p className={s.name}>{name}</p>
             <p>{location}</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </Modal>
-    );
+  );
 };
 
-export default ImageModal
+export default ImageModal;
